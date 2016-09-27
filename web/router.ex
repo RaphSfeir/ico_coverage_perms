@@ -13,6 +13,6 @@ defmodule IcoCoveragePerms.Router do
   scope "/api", IcoCoveragePerms do
     pipe_through :api
 
-    resources "/login", UserController, only: [:create, :show]
+    resources "/login", AccessController, only: [:create, :show]
   end
 end

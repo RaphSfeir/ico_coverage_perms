@@ -40,8 +40,8 @@ config :guardian, Guardian,
   }
 
 # Configures Dayron
-config :ico_coverage_perms, IcoCoveragePerms.KongRepo,
-  url: "https://gateway.pow.tf"
+config :ico_coverage_perms, IcoCoveragePerms.UManRepo,
+  url: "https://gateway.pow.tf/userman"
 
 # Configures Elixir's Logger
 config :logger, :console,
