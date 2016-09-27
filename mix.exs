@@ -33,7 +33,10 @@ defmodule IcoCoveragePerms.Mixfile do
     [{:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_ecto, "~> 3.0"},
+     {:guardian, "~> 0.13.0"},
+     {:dayron, git: "https://github.com/RaphSfeir/dayron"},
      {:mariaex, ">= 0.0.0"},
+     {:credo, "~> 0.4", only: [:dev, :test]},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"}]
   end

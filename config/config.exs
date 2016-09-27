@@ -17,6 +17,32 @@ config :ico_coverage_perms, IcoCoveragePerms.Endpoint,
   pubsub: [name: IcoCoveragePerms.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+# Configure Guardian
+config :guardian, Guardian,
+  allowed_algos: ["HS512"],
+  verify_module: Guardian.JWT,
+  issuer: "IcoCoveragePerms",
+  ttl: { 30, :days },
+  verify_issuer: true,
+  secret_key: "secret_key",
+  serializer: IcoCoveragePerms.GuardianSerializer,
+  permissions: %{
+    default: [
+      :read_token,
+      :revoke_token,
+    ],
+    profile: [
+      :full,
+      :update,
+      :read_settings,
+      :update_settings
+    ]
+  }
+
+# Configures Dayron
+config :ico_coverage_perms, IcoCoveragePerms.KongRepo,
+  url: "https://gateway.pow.tf"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

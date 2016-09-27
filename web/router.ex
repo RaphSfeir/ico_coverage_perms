@@ -5,7 +5,14 @@ defmodule IcoCoveragePerms.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :api_auth do
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.LoadResource
+  end
+
   scope "/api", IcoCoveragePerms do
     pipe_through :api
+
+    resources "/login", UserController, only: [:create, :show]
   end
 end
