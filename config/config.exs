@@ -41,7 +41,8 @@ config :guardian, Guardian,
 
 # Configures Dayron
 config :ico_coverage_perms, IcoCoveragePerms.UManRepo,
-  url: "https://gateway.pow.tf/userman"
+  url: "http://gateway.pow.tf/user_manager/",
+  headers: ["Content-Type": "application/json"]
 
 # Configures Elixir's Logger
 config :logger, :console,
