@@ -19,7 +19,7 @@ defmodule IcoCoveragePerms.AccessControllerTest do
 
   test "gets forbidden status when credentials aren't valid", %{conn: conn} do
     conn = post conn, access_path(conn, :create), login: @invalid_attrs
-    assert json_response(conn, 401)["errors"]["detail"]
+    assert json_response(conn, 403)["errors"]["detail"]
   end
 
 end

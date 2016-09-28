@@ -15,7 +15,7 @@ defmodule IcoCoveragePerms.AccessController do
       {:error, error} ->
         conn
           |> put_status(:forbidden)
-          |> render("401.json")
+          |> render(IcoCoveragePerms.ErrorView, "403.json")
     end
   end
 end
