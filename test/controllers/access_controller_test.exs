@@ -2,9 +2,6 @@ defmodule IcoCoveragePerms.AccessControllerTest do
   
   use IcoCoveragePerms.ConnCase
 
-  alias IcoCoveragePerms.KongRepo
-  alias IcoCoveragePerms.Access
-
   @valid_attrs %{ login: "Raphael234", password: "testtest", service_id: "django-services-todos"}
   @invalid_attrs %{ login: "1", password: "1234", service_id: "aa" }
 
