@@ -35,6 +35,7 @@ defmodule IcoCoveragePerms.Mixfile do
      {:phoenix_ecto, "~> 3.0"},
      {:guardian, "~> 0.13.0"},
      {:dayron, git: "https://github.com/RaphSfeir/dayron"},
+     {:distillery, "~> 0.9"},
      {:mariaex, ">= 0.0.0"},
      {:credo, "~> 0.4", only: [:dev, :test]},
      {:gettext, "~> 0.11"},
