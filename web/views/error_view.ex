@@ -9,6 +9,10 @@ defmodule IcoCoveragePerms.ErrorView do
     %{errors: %{detail: "Internal server error"}}
   end
 
+  def render("401.json", _assigns) do
+    %{errors: %{detail: "Authentication required"}}
+  end
+
   def render("403.json", _assigns) do
     %{errors: %{detail: "Forbidden"}}
   end
