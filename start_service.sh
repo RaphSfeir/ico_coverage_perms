@@ -1,0 +1,14 @@
+KONG_ADMIN_ADDR=$1
+SERVICE_NAME=$2
+DATA_CENTER=$3
+STATIC_PORT=$4
+ADMIN_ACCESS_TOKEN=$5
+SERVICE_PATH=$6
+OAUTH2_SCOPES=$7
+CLIENT_SECRET=$8
+
+python /phoenixapp/add_to_gateway.py $KONG_ADMIN_ADDR $SERVICE_NAME $DATA_CENTER $STATIC_PORT $ADMIN_ACCESS_TOKEN $SERVICE_PATH $OAUTH2_SCOPES $CLIENT_SECRET
+
+
+rel/ico_coverage_perms/bin/ico_coverage_perms foreground 
+#python /usr/src/app/manage.py runserver 0.0.0.0:8000
