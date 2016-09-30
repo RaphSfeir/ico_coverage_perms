@@ -3,11 +3,6 @@ defmodule IcoCoveragePerms.Access do
     data
   end
 
-  def __from_json_list__(%{data: data}, opts) do
-    IO.inspect ("FROM JSON LIST")
-    Enum.map(data, &__from_json__(&1, opts))
-  end
-
   use Ecto.Schema
   use Dayron.Model
 

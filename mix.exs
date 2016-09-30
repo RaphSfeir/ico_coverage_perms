@@ -18,7 +18,7 @@ defmodule IcoCoveragePerms.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {IcoCoveragePerms, []},
-     applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
+     applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext, :rollbax,
                     :phoenix_ecto, :mariaex]]
   end
 
@@ -36,6 +36,7 @@ defmodule IcoCoveragePerms.Mixfile do
      {:guardian, "~> 0.13.0"},
      {:dayron, git: "https://github.com/RaphSfeir/dayron"},
      {:distillery, "~> 0.9"},
+     {:rollbax, "~> 0.6"},
      {:mariaex, ">= 0.0.0"},
      {:credo, "~> 0.4", only: [:dev, :test]},
      {:gettext, "~> 0.11"},

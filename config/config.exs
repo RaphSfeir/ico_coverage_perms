@@ -39,6 +39,11 @@ config :guardian, Guardian,
     ]
   }
 
+# Configures Rollbax
+config :rollbax,
+  access_token: "099e01d77b984cd49250889afc4c96c3",
+    environment: "production"
+
 # Configures Dayron
 config :ico_coverage_perms, IcoCoveragePerms.UManRepo,
   url: "http://gateway.pow.tf/user_manager/",
@@ -48,6 +53,12 @@ config :ico_coverage_perms, IcoCoveragePerms.UManRepo,
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
+
+# Configures Rollbax logger backend
+config :logger, 
+  backends: [Rollbax.Logger]
+config :logger, Rollbax.Logger,
+  level: :warn
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

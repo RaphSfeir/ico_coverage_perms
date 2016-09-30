@@ -17,7 +17,7 @@ config :ico_coverage_perms, IcoCoveragePerms.Endpoint,
   url: [host: "example.com", port: 8001]
 
 # Do not print debug messages in production
-config :logger, level: :info
+config :logger, level: :warn
 
 # ## SSL Support
 #
