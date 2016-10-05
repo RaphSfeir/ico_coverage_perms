@@ -18,8 +18,8 @@ defmodule IcoCoveragePerms.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {IcoCoveragePerms, []},
-     applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext, :rollbax,
-                    :phoenix_ecto, :mariaex]]
+     applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext, :rollbax, :guardian,
+                    :phoenix_ecto, :mariaex, :dayron]]
   end
 
   # Specifies which paths to compile per environment.
