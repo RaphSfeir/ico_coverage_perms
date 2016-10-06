@@ -33,9 +33,81 @@ add_api_data = {
         "name":OPT["API_NAME"],
         "upstream_url":"http://%(SERVICE_NAME)s.service.%(DATA_CENTER)s.consul:%(STATIC_PORT)s" % OPT,
         "request_path":OPT["REQUEST_PATH"],
-        "strip_request_path":True
+        "strip_request_path":False
         }
 request = requests.post(add_api_url, data=add_api_data)
 print request.status_code
 print request.text
 
+
+print "ADD PLUGIN #############################################################"
+add_plugin_url = "http://%(KONG_ADMIN_ADDR)s/apis/%(API_NAME)s/plugins/" % OPT
+add_plugin_data = {
+        "name":"oauth2",
+        "config":{
+            "scopes":"guest,email,phone,todos",
+            "mandatory_scope":"true",
+            "enable_password_grant":"true",
+            "provision_key":OPT["PROVISION_KEY"]
+            }
+        }
+
+request = requests.post(add_plugin_url, json=add_plugin_data)
+print request.status_code
+print request.text
+
+
+
+print "\n\nADD CONSUMER #############################################################"
+add_admin_url = "http://%(KONG_ADMIN_ADDR)s/apis/%(API_NAME)s/plugins/" % OPT
+add_admin_data = {
+        "username":OPT["ADMIN_ID"],
+        "custom_id":OPT["ADMIN_ID"]
+        }
+print request.status_code
+print request.text
+
+
+print "\n\nPRINT EXISTING CREDENTIAL #############################################################"
+get_credential_url = "http://%(KONG_ADMIN_ADDR)s/consumers/%(ADMIN_ID)s/oauth2" % OPT
+response = requests.get(get_credential_url).json()
+print response
+
+print "\n\nDELETE ACCESS TOKEN FOR  CREDENTIAL #############################################################"
+for r in response["data"]:
+    if r["name"] == OPT["API_NAME"]:
+        delete_url = ("http://%(KONG_ADMIN_ADDR)s/consumers/%(ADMIN_ID)s/oauth2/" + r["id"]) %OPT
+        requests.delete(delete_url)
+
+
+print "\n\nADD CREDENTIAL #############################################################"
+add_cred_url = "http://%(KONG_ADMIN_ADDR)s/consumers/%(ADMIN_ID)s/oauth2" % OPT
+add_cred_data = {
+    "name":OPT["API_NAME"],
+    "client_id":OPT["CLIENT_ID"],
+    "client_secret":OPT["CLIENT_SECRET"],
+    "redirect_uri":"http://some-domain/endpoint/"
+}
+request = requests.post(add_cred_url, json=add_cred_data)
+print request.status_code
+print request.text
+
+
+print "\n\nPRINT NEW CREDENTIAL #############################################################"
+response = requests.get(get_credential_url).json()
+print response
+
+print "\n\nADD TOKEN #############################################################"
+for r in response["data"]:
+    if r["name"] == OPT["API_NAME"]:
+        add_token_url = "http://%(KONG_ADMIN_ADDR)s/oauth2_tokens" % OPT
+        add_token_data = {
+            "credential_id":r["id"],
+            "token_type":"bearer",
+            "access_token":OPT["ADMIN_ACCESS_TOKEN"],
+            "refresh_token":OPT["ADMIN_REFRESH_TOKEN"],
+            "expires_in":360000000
+        }
+        request = requests.post(add_token_url, json=add_token_data)
+        print request.status_code
+        print request.text 
